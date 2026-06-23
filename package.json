@@ -1,0 +1,14 @@
+{
+  "name": "careview-health-dashboard",
+  "private": true,
+  "packageManager": "pnpm@11.5.3",
+  "scripts": {
+    "dev": "corepack pnpm --parallel --filter @careview/server --filter @careview/client dev",
+    "build": "corepack pnpm --filter @careview/server build && corepack pnpm --filter @careview/client build",
+    "test": "corepack pnpm --filter @careview/server test && corepack pnpm --filter @careview/client test",
+    "lint": "corepack pnpm -r lint",
+    "db:migrate": "corepack pnpm --filter @careview/server db:migrate",
+    "db:seed": "corepack pnpm --filter @careview/server db:seed",
+    "data:import": "corepack pnpm --filter @careview/server data:import"
+  }
+}

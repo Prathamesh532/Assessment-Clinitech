@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="820" viewBox="0 0 1400 820">
+  <rect width="1400" height="820" fill="#f5f8f6"/>
+  <text x="80" y="80" font-family="Arial" font-size="36" font-weight="700" fill="#173d36">CareView - System Architecture</text>
+  <text x="80" y="116" font-family="Arial" font-size="18" fill="#627973">Production-oriented healthcare report portal</text>
+  <g font-family="Arial">
+    <rect x="80" y="210" rx="18" width="260" height="150" fill="#ffffff" stroke="#b9cec7" stroke-width="2"/>
+    <text x="210" y="255" text-anchor="middle" font-size="22" font-weight="700" fill="#173d36">Patient / Admin</text>
+    <text x="210" y="292" text-anchor="middle" font-size="16" fill="#627973">Desktop or mobile browser</text>
+    <text x="210" y="322" text-anchor="middle" font-size="16" fill="#627973">Role-specific experience</text>
+    <rect x="430" y="180" rx="18" width="310" height="210" fill="#e5f1ed" stroke="#2a8273" stroke-width="2"/>
+    <text x="585" y="225" text-anchor="middle" font-size="22" font-weight="700" fill="#173d36">React Web Application</text>
+    <text x="585" y="260" text-anchor="middle" font-size="16" fill="#4d6861">Vite + JavaScript</text>
+    <text x="585" y="292" text-anchor="middle" font-size="16" fill="#4d6861">Protected routes</text>
+    <text x="585" y="322" text-anchor="middle" font-size="16" fill="#4d6861">TanStack Query + Recharts</text>
+    <text x="585" y="352" text-anchor="middle" font-size="16" fill="#4d6861">Hosted on Vercel</text>
+    <rect x="830" y="150" rx="18" width="340" height="270" fill="#173d36"/>
+    <text x="1000" y="200" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">Express API</text>
+    <text x="1000" y="238" text-anchor="middle" font-size="16" fill="#c9ddd7">JWT authentication + RBAC</text>
+    <text x="1000" y="270" text-anchor="middle" font-size="16" fill="#c9ddd7">Zod request validation</text>
+    <text x="1000" y="302" text-anchor="middle" font-size="16" fill="#c9ddd7">Search + server pagination</text>
+    <text x="1000" y="334" text-anchor="middle" font-size="16" fill="#c9ddd7">CSV/XLSX validation/import</text>
+    <text x="1000" y="366" text-anchor="middle" font-size="16" fill="#c9ddd7">Helmet + rate limiting</text>
+    <text x="1000" y="398" text-anchor="middle" font-size="16" fill="#c9ddd7">Hosted on Render</text>
+    <rect x="830" y="540" rx="18" width="340" height="170" fill="#ffffff" stroke="#b9cec7" stroke-width="2"/>
+    <text x="1000" y="588" text-anchor="middle" font-size="22" font-weight="700" fill="#173d36">PostgreSQL</text>
+    <text x="1000" y="622" text-anchor="middle" font-size="16" fill="#627973">Users · Clients · Reports</text>
+    <text x="1000" y="652" text-anchor="middle" font-size="16" fill="#627973">Audit logs · Search indexes</text>
+    <text x="1000" y="682" text-anchor="middle" font-size="16" fill="#627973">Neon managed database</text>
+    <rect x="420" y="540" rx="18" width="320" height="170" fill="#fff8eb" stroke="#c4823d" stroke-width="2"/>
+    <text x="580" y="588" text-anchor="middle" font-size="22" font-weight="700" fill="#68471e">Admin File Import</text>
+    <text x="580" y="622" text-anchor="middle" font-size="16" fill="#795f3d">Header + row validation</text>
+    <text x="580" y="652" text-anchor="middle" font-size="16" fill="#795f3d">Foreign-key verification</text>
+    <text x="580" y="682" text-anchor="middle" font-size="16" fill="#795f3d">Duplicate-safe insert</text>
+    <path d="M340 285 H430" stroke="#2a8273" stroke-width="4" marker-end="url(#arrow)"/>
+    <path d="M740 285 H830" stroke="#2a8273" stroke-width="4" marker-end="url(#arrow)"/>
+    <path d="M1000 420 V540" stroke="#2a8273" stroke-width="4" marker-end="url(#arrow)"/>
+    <path d="M740 625 H790 Q810 625 810 605 V390 H830" fill="none" stroke="#c4823d" stroke-width="4" marker-end="url(#arrowAmber)"/>
+    <text x="775" y="270" text-anchor="middle" font-size="14" fill="#627973">HTTPS / JSON</text>
+    <text x="1020" y="490" font-size="14" fill="#627973">Parameterized SQL</text>
+  </g>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#2a8273"/></marker><marker id="arrowAmber" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#c4823d"/></marker></defs>
+</svg>

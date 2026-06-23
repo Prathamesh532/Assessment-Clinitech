@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: careview
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "55433:5432"
+    volumes:
+      - careview_postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d careview"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  careview_postgres:

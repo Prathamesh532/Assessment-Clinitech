@@ -1,0 +1,17 @@
+node_modules/
+dist/
+coverage/
+.env
+.env.local
+*.log
+.DS_Store
+.idea/
+.vscode/
+tmp/
+outputs/
+uploads/
+*.xlsx
+*.xls
+*.csv
+!server/data/sample-health-reports.csv
+!server/data/sample-health-reports.xlsx

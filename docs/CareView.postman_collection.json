@@ -1,0 +1,57 @@
+{
+  "info": {
+    "name": "CareView API",
+    "description": "Authentication, patient reports, admin search, CSV/Excel import and RBAC checks.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:4000" },
+    { "key": "userToken", "value": "" },
+    { "key": "adminToken", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Patient register",
+          "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"fullName\": \"New Patient\",\n  \"email\": \"new.patient@example.com\",\n  \"mobile\": \"8108509859\",\n  \"password\": \"Patient@12345\"\n}" }, "url": "{{baseUrl}}/api/auth/register" }
+        },
+        {
+          "name": "Patient login",
+          "event": [{ "listen": "test", "script": { "exec": ["const json = pm.response.json();", "pm.collectionVariables.set('userToken', json.data.accessToken);", "pm.test('Login succeeds', () => pm.response.to.have.status(200));"] } }],
+          "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"email\": \"user1@example.com\",\n  \"password\": \"User@12345\"\n}" }, "url": "{{baseUrl}}/api/auth/login" }
+        },
+        {
+          "name": "Admin login",
+          "event": [{ "listen": "test", "script": { "exec": ["const json = pm.response.json();", "pm.collectionVariables.set('adminToken', json.data.accessToken);", "pm.test('Login succeeds', () => pm.response.to.have.status(200));"] } }],
+          "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"email\": \"admin@careview.local\",\n  \"password\": \"Admin@12345\"\n}" }, "url": "{{baseUrl}}/api/auth/login" }
+        }
+      ]
+    },
+    {
+      "name": "Patient",
+      "item": [
+        { "name": "Latest report", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{userToken}}" }], "url": "{{baseUrl}}/api/reports/me/latest" } },
+        { "name": "Report history", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{userToken}}" }], "url": "{{baseUrl}}/api/reports/me?page=1&pageSize=10" } },
+        { "name": "Report summary", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{userToken}}" }], "url": "{{baseUrl}}/api/reports/me/summary" } }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        { "name": "Search clients", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{adminToken}}" }], "url": "{{baseUrl}}/api/admin/clients?page=1&pageSize=20&search=Riya" } },
+        { "name": "Client detail", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{adminToken}}" }], "url": "{{baseUrl}}/api/admin/clients/1" } },
+        { "name": "Client reports", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{adminToken}}" }], "url": "{{baseUrl}}/api/admin/clients/1/reports?page=1&pageSize=10" } },
+        { "name": "Add client report", "request": { "method": "POST", "header": [{ "key": "Authorization", "value": "Bearer {{adminToken}}" }, { "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"reportDate\": \"2026-06-23\",\n  \"hemoglobin\": 13.2,\n  \"vitaminD\": 32,\n  \"cholesterol\": 178,\n  \"bloodSugarFasting\": 92,\n  \"creatinine\": 0.9,\n  \"urineProtein\": \"Negative\",\n  \"bmi\": 23.4,\n  \"doctorNotes\": \"Initial report added from admin portal.\"\n}" }, "url": "{{baseUrl}}/api/admin/clients/1/reports" } },
+        { "name": "Import report CSV or Excel", "request": { "method": "POST", "header": [{ "key": "Authorization", "value": "Bearer {{adminToken}}" }], "body": { "mode": "formdata", "formdata": [{ "key": "file", "type": "file", "src": ["server/data/sample-health-reports.xlsx"] }] }, "url": "{{baseUrl}}/api/admin/reports/import" } },
+        { "name": "Audit logs", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{adminToken}}" }], "url": "{{baseUrl}}/api/admin/audit-logs" } }
+      ]
+    },
+    {
+      "name": "RBAC check - patient denied admin route",
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('Patient is forbidden', () => pm.response.to.have.status(403));"] } }],
+      "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{userToken}}" }], "url": "{{baseUrl}}/api/admin/clients" }
+    }
+  ]
+}

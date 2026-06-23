@@ -1,0 +1,3 @@
+report_id,client_id,report_date,hemoglobin,vitamin_d,cholesterol,blood_sugar_fasting,creatinine,urine_protein,bmi,doctor_notes
+UPLOAD-001,1,2026-04-10,12.8,34,187,94,0.82,Negative,24.2,Continue current care plan
+UPLOAD-002,1,2026-05-10,13.1,38,181,91,0.80,Negative,23.9,Results stable
