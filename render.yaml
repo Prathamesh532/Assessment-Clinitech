@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: careview-api
+    runtime: docker
+    plan: free
+    dockerContext: .
+    dockerfilePath: ./server/Dockerfile
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 4000
+      - key: DATABASE_URL
+        fromDatabase:
+          name: careview-db
+          property: connectionString
+      - key: JWT_SECRET
+        sync: false
+      - key: JWT_EXPIRES_IN
+        value: 8h
+      - key: CLIENT_ORIGIN
+        sync: false
+      - key: CLIENT_ORIGINS
+        sync: false
+
+databases:
+  - name: careview-db
+    plan: free

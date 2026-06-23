@@ -88,16 +88,21 @@ The admin import screen accepts both `server/data/sample-health-reports.csv` and
 - [Technical decisions](docs/technical-decisions.md)
 - [Detailed project guide](docs/project-guide.md)
 - [JavaScript and SQL walkthrough](docs/javascript-sql-walkthrough.md)
+- [Deployment guide](docs/deployment.md)
 - [Postman collection](docs/CareView.postman_collection.json)
 
 ## Deployment
 
-1. Create a PostgreSQL database on Neon and copy its connection string.
-2. Deploy the API to Render using `render.yaml`. Configure `DATABASE_URL` and `CLIENT_ORIGINS`.
-3. Run `pnpm --filter @careview/server db:seed` once against the deployed database.
-4. Deploy the `client` directory to Vercel. Set `VITE_API_URL` to `<render-url>/api`.
-5. Set the API `CLIENT_ORIGINS` to the exact Vercel origin and redeploy.
+The intended deployment is Render for the API/database and Vercel for the React client.
+
+1. Deploy the API from `render.yaml`. It provisions `careview-api` and `careview-db`.
+2. Set Render secrets: `JWT_SECRET`, `CLIENT_ORIGIN`, and `CLIENT_ORIGINS`.
+3. Deploy Vercel with root directory `client`.
+4. Set Vercel `VITE_API_URL` to `<render-url>/api`.
+5. Seed demo accounts once against the deployed database.
 6. Run the Postman collection and manually verify both role workflows.
+
+See [Deployment guide](docs/deployment.md) for the exact commands and smoke-test checklist.
 
 Free-tier policies change; verify current provider limits before deployment.
 
